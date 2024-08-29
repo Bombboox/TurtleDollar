@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turtle Dollar: About</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav__buttons">
+          <% if(locals.user) { %>
+          <a href="/profile" class="username_text clickable"
+            ><%=locals.user.name.toUpperCase()%></a
+          >
+          <% } %>
+          <a href="/" class="clickable">Menu</a>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="banner">
+        <div class="profile-picture"></div>
+        <p class="profile-text"><%=locals.user.name.toUpperCase()%></p>
+        <p class="points-text"><%=`POINTS: ${locals.user.points}`%></p>
+      </div>
+      <div id="confirm">
+        <div id="confirm_box" onclick="event.stopPropagation()">
+          <div class="confirm_text">
+            <p id="confirm_selection_text">Confirm Selection</p>
+            <p id="item"></p>
+            <p id="points"></p>
+          </div>
+          <button class="product_buy confirm_button" onclick="finalize_purchase()">Confirm</button>
+          <button class="product_buy confirm_button" onclick="cancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="offer_box">
+        <p class="offers_text">AVAILABLE PRODUCTS</p>
+        <div class="offers_line"></div>
+        <div class="wall">
+          <div class="product">
+            <button onclick="buy(0)" class="product_buy">Buy</button>
+            <p class="product_text">600 points - $5.00 SEETURTLES Donation</p>
+          </div>
+          <div class="product">
+            <button onclick="buy(1)" class="product_buy">Buy</button>
+            <p class="product_text">600 points - $5.00 TURTLE-FOUNDATION Donation</p>
+          </div>
+        </div>
+      </div>
+      <div class="page-background" id="register-background"></div>
+    </main>
+
+    <footer>
+      <nav>
+        <ul class="nav__buttons">
+          <span>&copy; 2023-2023 Turtle Dollar Co. | All Rights Reserved</span>
+        </ul>
+      </nav>
+    </footer>
+
+    <script>
+      const confirm = document.getElementById('confirm');
+      const item = document.getElementById('item');
+      const points = document.getElementById('points');
+
+      const root_url = `<%= locals.url %>`;
+
+      const products = [
+        {name: "$5.00 SEETURTLES Donation", points: 600},
+        {name: "$5.00 TURTLE-FOUNDATION Donation", points: 600},
+      ];
+      var selected_product = 0;
+
+      const buy = (product) => {
+        confirm.style.left = "0px";
+
+        selected_product = product;
+  
+        item.innerHTML = products[product].name;
+        points.innerHTML = `${products[product].points} points`;
+      }
+
+      const finalize_purchase = () => {
+        const url = `${root_url}/request_product`;
+        const data = selected_product;
+
+        fetch(url, {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        })
+        .then(response => response.text())
+        .then(data => {alert(data); location.reload()})
+        .catch(error => console.log(error))
+      }
+
+      const cancel = () => {
+        confirm.style.left = "-9999px";
+      }
+
+      confirm.onclick = () => {
+        cancel();
+      }
+
+    </script>
+  </body>
+</html>

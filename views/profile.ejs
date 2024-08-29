@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Dollar: About</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav__buttons">
+                <% if(locals.user) { %>
+                    <a href="/profile" class="username_text clickable"><%=locals.user.name.toUpperCase()%></a>
+                <% } %>
+                <a href="/" class="clickable">Menu</a>   
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="banner">
+            <div class="profile-picture"></div>
+            <p class="profile-text"><%=`${locals.user.name.toUpperCase()}'S PROFILE`%></p>
+        </div>
+        <p class="offers_text">ORDERS</p>
+        <div class="offers_line"></div>
+        <table id="orders_table">
+            <tr>
+              <th>Product</th>
+              <th>Date</th>
+              <th>Points</th>
+              <th>Status</th>
+            </tr>
+            <% if(locals.orders) { %>
+                <% locals.orders.forEach(function(order) { %>
+                    <tr>
+                        <td><%= order.product %></td>
+                        <td><%= `${order.date}`.slice(0, 15) %></td>
+                        <td><%= order.amount %></td>
+                        <% if(order.status == 0) { %>
+                        <td>Pending</td>
+                        <% } else if(order.status == 1) { %>
+                        <td>Approved</td>
+                        <% } %>
+                    </tr>
+                <% }); %>
+            <% } %>
+          </table>
+        <div class="page-background" id="login-background"></div>
+    </main>
+
+    <footer>
+        <nav>
+            <ul class="nav__buttons">
+                <span>&copy; 2023-2023 Turtle Dollar Co. | All Rights Reserved</span>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>

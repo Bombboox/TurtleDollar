@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Dollar: Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://unpkg.com/swup@3"></script>
+    <script defer src="animation.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <header>
+        <nav>
+            <ul class="nav__buttons">
+                <% if(locals.user) { %>
+                    <a href="/profile" class="username_text clickable"><%=locals.user.name.toUpperCase()%></a>
+                <% } %>
+                <a href="/" class="clickable">Menu</a>   
+            </ul>
+        </nav>
+    </header>
+
+    <footer>
+        <nav>
+            <ul class="nav__buttons">
+                <span>&copy; 2023-2023 Turtle Dollar Co. | All Rights Reserved</span>
+            </ul>
+        </nav>
+    </footer>
+
+    <div id="swup" class="transition-fade">
+        <div class="wrapper">
+            <div class="form-box register">
+                <a href = "/" class="icon-close"><ion-icon name="close-circle-outline"></ion-icon></a>
+                <h2 class="flashing">Register</h2>
+                <form action = "/register" method="POST">
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input name="name" type="text" placeholder=" " required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input name="email" type="email" placeholder=" " required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"></span>
+                        <input name="password" type="password" placeholder=" " required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">Remember Me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?</p>
+                        <a href="/login" class="register-link">Login</a>
+                    </div>
+                </form>
+                <div class="warning">
+                    <% if(locals.message) { %>
+                        <p><%= locals.message %></p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="page-background" id="register-background"></div>
+    </div>
+</body>
+</html>

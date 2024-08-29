@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turtle Dollar: About</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="https://unpkg.com/swup@3"></script>
+    <script defer src="animation.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <header>
+        <nav>
+            <ul class="nav__buttons">
+                <% if(locals.user) { %>
+                    <a href="/profile" class="username_text clickable"><%=locals.user.name.toUpperCase()%></a>
+                <% } %>
+                <a href="/" class="clickable">Menu</a>   
+            </ul>
+        </nav>
+    </header>
+
+    <footer>
+        <nav>
+            <ul class="nav__buttons">
+                <span>&copy; 2023-2023 Turtle Dollar Co. | All Rights Reserved</span>
+            </ul>
+        </nav>
+    </footer>
+
+    <div id="swup" class="transition-fade">
+        <div id="menu-items">
+            <p>We provide a platform that rewards you for taking surveys.</p>
+            <p>Our goal is to raise funding for sea turtle conservationist programs. A percentage of proceeds go directly to supporting the cause.</p>
+            <p>Additionally, users are given the option to donate their earnings. Enjoy your stay!</p>
+        </div>
+        <div id="welcome-text">
+            <p class="flashing">What is our mission?</p>
+        </div>
+        <div class="page-background" id="about-background"></div>
+    </div>
+</body>
+</html>

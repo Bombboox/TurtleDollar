@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turtle Dollar: About</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav__buttons">
+          <% if(locals.user) { %>
+          <a href="/profile" class="username_text clickable"
+            ><%=locals.user.name.toUpperCase()%></a
+          >
+          <% } %>
+          <a href="/" class="clickable">Menu</a>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="banner">
+        <div class="profile-picture"></div>
+        <p class="profile-text"><%=locals.user.name.toUpperCase()%></p>
+        <p class="points-text"><%=`POINTS: ${locals.user.points}`%></p>
+      </div>
+      <div class="offer_box">
+        <p class="offers_text">AVAILABLE SURVEYS</p>
+        <div class="offers_line"></div>
+        <div class="wall">
+          <a
+            class="survey_provider"
+            target="_blank"
+            href="https://offers.cpx-research.com/index.php?app_id=17864&amp;ext_user_id=<%=locals.user.id%>"
+          >
+            <div id="cpx-image" class="survey_image"></div>
+          </a>
+        </div>
+      </div>
+      <div class="page-background" id="register-background"></div>
+    </main>
+
+    <footer>
+      <nav>
+        <ul class="nav__buttons">
+          <span>&copy; 2023-2023 Turtle Dollar Co. | All Rights Reserved</span>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
